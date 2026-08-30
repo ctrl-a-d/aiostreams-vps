@@ -10,12 +10,12 @@ services:
       COLLECTIONS: "crowdsecurity/traefik crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-generic-rules crowdsecurity/appsec-crs crowdsecurity/http-cve crowdsecurity/base-http-scenarios crowdsecurity/sshd"
       CUSTOM_HOSTNAME: "crowdsec"
       GID: "${PGID}"
-      BOUNCER_KEY_TRAEFIK: "${CROWDSEC_LAPI_KEY}"
+      BOUNCER_KEY_TRAEFIK: "${CROWDSEC_LAPI_KEY:?}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.crowdsec.plugin.bouncer.enabled=true"
       - "traefik.http.middlewares.crowdsec.plugin.bouncer.logLevel=debug"
-      - "traefik.http.middlewares.crowdsec.plugin.bouncer.crowdseclapikey=${CROWDSEC_LAPI_KEY}"
+      - "traefik.http.middlewares.crowdsec.plugin.bouncer.crowdseclapikey=${CROWDSEC_LAPI_KEY:?}"
       - "traefik.http.middlewares.crowdsec.plugin.bouncer.crowdsecappsecenabled=true"
     volumes:
       - ${DOCKER_DATA_DIR}/traefik:/var/log/traefik:ro

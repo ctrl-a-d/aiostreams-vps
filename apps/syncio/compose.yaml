@@ -7,8 +7,8 @@ services:
     expose:
       - 3000
     environment:
-      JWT_SECRET: "${JWT_SECRET:-jwt-secret-key}"
-      ENCRYPTION_KEY: "${ENCRYPTION_KEY:-encryption-key}"
+      JWT_SECRET: "${JWT_SECRET:?}"
+      ENCRYPTION_KEY: "${ENCRYPTION_KEY:?}"
       UID: "${PUID:-1000}"
       GID: "${PGID:-1000}"
       DEBUG: "false"
